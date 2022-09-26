@@ -17,5 +17,9 @@ cat $FOLDER_FILE | while read line; do
 	git add .
 	`git commit -m '$COMMIT_MESSAGE'`
 	`git push $PUSH_COMMAND`
-	echo $?
+
+	if [[ $? -ne 0 ]]
+	then
+		die 1 "Git error. Dropping to console."
+	fi
 done
