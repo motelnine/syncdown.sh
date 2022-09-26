@@ -15,13 +15,13 @@ GIT_ERROR_MESSAGE='A git error occured. Dropping back to console...'
 
 # Sync console container opene
 opencontainer () {
-	echo "------------[Sync]------------"
+	echo "----------------[ Sync ]----------------"
 	echo "Syncing folder: $FOLDER"
 }
 
 # Sync console container close
 closecontainer () {
-	echo -e "------------------------------\n"
+	echo -e "---------------------------------------\n"
 }
 
 # Read folders
