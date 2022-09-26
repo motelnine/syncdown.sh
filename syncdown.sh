@@ -32,7 +32,7 @@ cat $FOLDER_FILE | while read line; do
 
 	if [[ $? -ne 0 ]]
 	then
-		echo "Git error. Dropping to console."
+		echo "Git error: $?. Dropping to console."
 		exit
 	fi
 
