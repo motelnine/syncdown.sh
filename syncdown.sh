@@ -33,8 +33,8 @@ cat $FOLDER_FILE | while read line; do
 
 	`cd $FOLDER`
 	git add .
-	`git commit -m '$COMMIT_MESSAGE'`
-	`git push $PUSH_COMMAND`
+	echo`git commit -m '$COMMIT_MESSAGE'`
+	echo `git push $PUSH_COMMAND`
 	GIT_CODE=$?
 
 	closecontainer
