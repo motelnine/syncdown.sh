@@ -2,7 +2,7 @@
 
 # Shutdown command to be executed
 #SHUTDOWN_COMMAND='shutdown -h now'
-SHUTDOWN_COMMAND='echo "shutdown -h now'
+SHUTDOWN_COMMAND='echo "shutdown -h now"'
 
 # Location of folders file (one folder per line)
 FOLDER_FILE='folders.txt'
