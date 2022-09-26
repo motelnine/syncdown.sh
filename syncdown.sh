@@ -1,7 +1,10 @@
 #!/bin/bash
 
-# Shutdown command to be executed
+# Shutdown command to be executed after sync
 SHUTDOWN_COMMAND='shutdown -h now'
+
+# Restart command to be executed after sync
+RESTART_COMMAND='reboot -h now'
 
 # Location of folders file (one folder per line)
 FOLDER_FILE="$HOME/.config/syncdown/folders.conf"
@@ -50,9 +53,16 @@ GIT_EXIT=$?
 if [[ $GIT_EXIT -ne 0 ]]; then
 	echo $GIT_ERROR_MESSAGE
 else
-	if [[ $1 != "--sync-only" ]]; then
-		`$SHUTDOWN_COMMAND`
-	else
-		echo "Done."
-	fi
+	case $1 in
+		"--sync")
+			echo "Done."
+		 	;;
+		"--restart")
+			`$RESTART_COMMAND`
+			;;
+		*)
+			`$SHUTDOWN_COMMAND`
+			;;
+	esac
+
 fi

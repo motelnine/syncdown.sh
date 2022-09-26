@@ -8,7 +8,16 @@ Edit the file and add a list of folders using the full path to auto-sync and the
 ```
 To sync the folders without shuting down the `--sync-only` argument can be used:
 ```
-syncdown.sh --sync-only
+syncdown.sh --sync
 ``` 
 
-You may wish to alias your shutdown command to this script in your preferred shell.
+You may wish to create a symbolic link
+```
+ln -s <path-to-syncdown>/syncdown.sh /bin/syncdown
+```
+
+You may also wish to alias your shutdown command to this script in your preferred shell.
+```
+alias shutdown="syncdown --sync-only"
+```
+
