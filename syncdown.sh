@@ -20,6 +20,6 @@ cat $FOLDER_FILE | while read line; do
 
 	if [[ $? -ne 0 ]]
 	then
-		die 1 "Git error. Dropping to console."
+		exit "Git error. Dropping to console."
 	fi
 done
