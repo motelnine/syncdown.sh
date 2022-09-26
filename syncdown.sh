@@ -48,6 +48,8 @@ done
 
 $GIT_EXIT=$?
 
+echo $GIT_EXIT
+
 if [[ $GIT_EXIT -ne 0 ]]; then
 	echo $GIT_ERROR_MESSAGE
 else
