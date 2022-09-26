@@ -40,4 +40,4 @@ cat $FOLDER_FILE | while read line; do
 
 done
 
-`$SHUTDOWN_COMMAND`
+echo `$SHUTDOWN_COMMAND`
