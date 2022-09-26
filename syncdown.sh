@@ -8,10 +8,16 @@ FOLDER_FILE='folders.txt'
 
 COMMIT_MESSAGE='syncdown.sh auto commit'
 
+report () {
+	print "------------[ " $1 " ]------------"
+}
+
 # Read folders
 cat $FOLDER_FILE | while read line; do
 	FOLDER=`echo "$line" | awk -F ':' '{print $1}'`
 	PUSH_COMMAND=`echo "$line" | awk -F ':' '{print $2}'`
+
+	report $FOLDER
 
 	`cd $FOLDER`
 	git add .
