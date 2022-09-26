@@ -35,6 +35,7 @@ cat $FOLDER_FILE | while read line; do
 	git add .
 	`git commit -m '$COMMIT_MESSAGE'`
 	`git push $PUSH_COMMAND`
+	closecontainer
 
 	GIT_CODE=$?
 
@@ -44,7 +45,6 @@ cat $FOLDER_FILE | while read line; do
 		exit 1
 	fi
 
-	closecontainer
 
 done
 
