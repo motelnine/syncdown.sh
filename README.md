@@ -18,7 +18,7 @@ ln -s <path-to-syncdown>/syncdown.sh /bin/syncdown
 
 You may also wish to alias your shutdown command to this script in your preferred shell.
 ```
-alias shutdown="syncdown --sync-only"
+alias shutdown="syncdown --sync"
 ```
 
 To force using syncdown you can add these aliases to your `.bashrc` file:
