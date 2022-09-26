@@ -44,11 +44,11 @@ cat $FOLDER_FILE | while read line; do
 		echo "Git error: $GIT_CODE. Dropping to console."
 		exit 1
 	fi
-
-
 done
 
-if [[ $? -ne 0 ]]; then
+$GIT_EXIT=$?
+
+if [[ $GIT_EXIT -ne 0 ]]; then
 	echo $GIT_ERROR_MESSAGE
 else
 	echo `$SHUTDOWN_COMMAND`
