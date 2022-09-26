@@ -35,7 +35,7 @@ cat $FOLDER_FILE | while read line; do
 	if [[ $GIT_CODE -ne 0 ]]
 	then
 		echo "Git error: $GIT_CODE. Dropping to console."
-		exit
+		exit 1
 	fi
 
 	closefolder
