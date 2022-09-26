@@ -10,8 +10,8 @@ FOLDER_FILE='folders.txt'
 # Git commit message
 COMMIT_MESSAGE='syncdown.sh auto commit'
 
-# Error count
-ERRORS=0
+# Git error message
+GIT_ERROR_MESSAGE='A git error occured. Dropping back to console...'
 
 # Sync console container opene
 opencontainer () {
@@ -40,16 +40,16 @@ cat $FOLDER_FILE | while read line; do
 
 	if [[ $GIT_CODE -ne 0 ]]
 	then
-		ERRORS=$((ERRORS++))
 		echo "Git error: $GIT_CODE. Dropping to console."
-		#exit 99
+		exit 1
 	fi
 
 	closecontainer
 
 done
 
-echo $?
-
-echo $ERRORS
-echo `$SHUTDOWN_COMMAND`
+if [[ $? -ne 0 ]]; then
+	echo $GIT_ERROR_MESSAGE
+else
+	echo `$SHUTDOWN_COMMAND`
+fi
