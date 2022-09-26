@@ -7,14 +7,20 @@ SHUTDOWN_COMMAND='echo "shutdown -h now"'
 # Location of folders file (one folder per line)
 FOLDER_FILE='folders.txt'
 
+# Git commit message
 COMMIT_MESSAGE='syncdown.sh auto commit'
 
-openfolder () {
+# Error count
+ERRORS=0
+
+# Sync console container opene
+opencontainer () {
 	echo "------------[Sync]------------"
 	echo "Syncing folder: $FOLDER"
 }
 
-closefolder () {
+# Sync console container close
+closecontainer () {
 	echo "------------------------------\n"
 }
 
@@ -23,7 +29,7 @@ cat $FOLDER_FILE | while read line; do
 	FOLDER=`echo "$line" | awk -F ':' '{print $1}'`
 	PUSH_COMMAND=`echo "$line" | awk -F ':' '{print $2}'`
 
-	openfolder $FOLDER
+	opencontainer $FOLDER
 
 	`cd $FOLDER`
 	git add .
@@ -38,7 +44,7 @@ cat $FOLDER_FILE | while read line; do
 		exit 1
 	fi
 
-	closefolder
+	closecontainer
 
 done
 
