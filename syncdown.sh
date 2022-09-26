@@ -40,6 +40,7 @@ cat $FOLDER_FILE | while read line; do
 
 	if [[ $GIT_CODE -ne 0 ]]
 	then
+		ERRORS=$ERRORS+1
 		echo "Git error: $GIT_CODE. Dropping to console."
 		exit 1
 	fi
@@ -48,4 +49,5 @@ cat $FOLDER_FILE | while read line; do
 
 done
 
+echo $ERRORS
 echo `$SHUTDOWN_COMMAND`
