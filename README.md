@@ -6,7 +6,7 @@ Edit the file and add a list of folders using the full path to auto-sync and the
 /home/user/Projects/project1:origin master
 /home/user/Projects/project1:origin dev
 ```
-To sync the folders without shutind down the `--sync-only` argument can be used:
+To sync the folders without shuting down the `--sync-only` argument can be used:
 ```
 syncdown.sh --sync-only
 ``` 
