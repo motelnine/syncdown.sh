@@ -42,12 +42,14 @@ cat $FOLDER_FILE | while read line; do
 	then
 		ERRORS=$((ERRORS++))
 		echo "Git error: $GIT_CODE. Dropping to console."
-		exit 1
+		exit 99
 	fi
 
 	closecontainer
 
 done
+
+echo $?
 
 echo $ERRORS
 echo `$SHUTDOWN_COMMAND`
