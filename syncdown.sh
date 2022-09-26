@@ -35,9 +35,9 @@ cat $FOLDER_FILE | while read line; do
 	git add .
 	`git commit -m '$COMMIT_MESSAGE'`
 	`git push $PUSH_COMMAND`
-	closecontainer
-
 	GIT_CODE=$?
+
+	closecontainer
 
 	echo "GIT_CODE:$GIT_CODE"
 
