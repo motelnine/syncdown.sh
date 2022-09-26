@@ -1,11 +1,10 @@
 #!/bin/bash
 
 # Shutdown command to be executed
-#SHUTDOWN_COMMAND='shutdown -h now'
-SHUTDOWN_COMMAND='echo "shutdown -h now"'
+SHUTDOWN_COMMAND='shutdown -h now'
 
 # Location of folders file (one folder per line)
-FOLDER_FILE='folders.txt'
+FOLDER_FILE="$HOME/.config/syncdown/folders.conf"
 
 # Git commit message
 COMMIT_MESSAGE='syncdown.sh auto commit'
@@ -31,10 +30,10 @@ cat $FOLDER_FILE | while read line; do
 
 	opencontainer $FOLDER
 
-	`cd $FOLDER`
+	cd $FOLDER
 	git add .
-	echo`git commit -m '$COMMIT_MESSAGE'`
-	echo `git push $PUSH_COMMAND`
+	git commit -m "$COMMIT_MESSAGE"
+	git push `echo $PUSH_COMMAND`
 	GIT_CODE=$?
 
 	closecontainer
@@ -51,5 +50,9 @@ GIT_EXIT=$?
 if [[ $GIT_EXIT -ne 0 ]]; then
 	echo $GIT_ERROR_MESSAGE
 else
-	echo `$SHUTDOWN_COMMAND`
+	if [[ $1 != "--sync-only" ]]; then
+		`$SHUTDOWN_COMMAND`
+	else
+		echo "Done."
+	fi
 fi
