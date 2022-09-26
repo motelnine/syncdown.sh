@@ -21,7 +21,7 @@ opencontainer () {
 
 # Sync console container close
 closecontainer () {
-	echo "------------------------------\n"
+	echo -e "------------------------------\n"
 }
 
 # Read folders
