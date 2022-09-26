@@ -17,4 +17,5 @@ cat $FOLDER_FILE | while read line; do
 	git add .
 	`git commit -m '$COMMIT_MESSAGE'`
 	`git push $PUSH_COMMAND`
+	echo $?
 done
