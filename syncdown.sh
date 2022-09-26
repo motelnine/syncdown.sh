@@ -39,8 +39,6 @@ cat $FOLDER_FILE | while read line; do
 
 	closecontainer
 
-	echo "GIT_CODE:$GIT_CODE"
-
 	if [[ $GIT_CODE -ne 0 ]]
 	then
 		echo "Git error: $GIT_CODE. Dropping to console."
