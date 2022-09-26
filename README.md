@@ -21,3 +21,9 @@ You may also wish to alias your shutdown command to this script in your preferre
 alias shutdown="syncdown --sync-only"
 ```
 
+To force using syncdown you can add these aliases to your `.bashrc` file:
+```
+alias shutdown='echo "Do not run as root. Use syncdown"'
+alias restart='echo "Do not run as root. Use syncdown"'
+alias reboot='echo "Do not run as root. User syncdown"'
+```
