@@ -46,7 +46,7 @@ cat $FOLDER_FILE | while read line; do
 	fi
 done
 
-$GIT_EXIT="gitexit:$?"
+GIT_EXIT="gitexit:$?"
 
 echo $GIT_EXIT
 
