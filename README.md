@@ -27,3 +27,13 @@ alias shutdown='echo "Do not run as root. Use syncdown"'
 alias restart='echo "Do not run as root. Use syncdown"'
 alias reboot='echo "Do not run as root. User syncdown"'
 ```
+
+To sync on startup link `syncup.sh` to `/bin/syncup`
+```
+ln -x <path-to-syncup.sh>/syncup.sh /bin/syncup
+```
+
+Run this command at startup (e.g. i3.config) to execute startup sync in xcfe4-terminal window:
+```
+xfce4-terminal --hold -x '/bin/syncup'
+```
