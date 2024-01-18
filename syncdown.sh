@@ -27,7 +27,7 @@ closecontainer () {
 }
 
 # Read folders
-cat $FOLDER_FILE | while read line; do
+cat $FOLDER_FILE | grep -vE '^[[:space:]]*$'\|'#' | while read line; do
 	FOLDER=`echo "$line" | awk -F ':' '{print $1}'`
 	PUSH_COMMAND=`echo "$line" | awk -F ':' '{print $2}'`
 
