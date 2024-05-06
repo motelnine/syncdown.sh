@@ -1,4 +1,9 @@
 #!/bin/bash
+FOLDER_COLOR='\033[0;36m'
+RESET_COLOR='\033[0;0m'
+OK_COLOR='\033[0;32m'
+LINE_COLOR='\033[0;37m'
+ERROR_COLOR='\033[0;31m'
 
 # Location of folders file (one folder per line)
 FOLDER_FILE="$HOME/.config/syncdown/folders.conf"
@@ -8,13 +13,13 @@ GIT_ERROR_MESSAGE='A git error occured. Dropping back to console...'
 
 # Sync console container open
 opencontainer () {
-	echo -e "\n----------------[ Sync ]----------------"
-	echo "Syncing folder [$FOLDER] ..."
+	echo -e "\n---------------------------------------"
+	echo -e "Syncing [${FOLDER_COLOR}${FOLDER}${RESET_COLOR}${RESET_COLOR}]..."
 }
 
 # Sync console container close
 closecontainer () {
-	echo -e "---------------------------------------\n"
+	echo -e "${LINE_COLOR}---------------------------------------${RESET_COLOR}\n"
 }
 
 # Read folders
@@ -28,13 +33,16 @@ cat $FOLDER_FILE | grep -vE '^[[:space:]]*$'\|'#' | while read line; do
 	git pull `echo $PULL_COMMAND`
 	GIT_CODE=$?
 
-	closecontainer
-
 	if [[ $GIT_CODE -ne 0 ]]
 	then
-		echo "Git error: $GIT_CODE. Dropping to console."
+		echo -e "Status: [${ERROR_COLOR}${GIT_CODE}${RESET_COLOR}] Dropping to console!"
 		exit 1
+	else
+		echo -e "Status: [${OK_COLOR}OK${RESET_COLOR}]"
 	fi
+
+	closecontainer
+
 done
 
 GIT_EXIT=$?
@@ -42,5 +50,5 @@ GIT_EXIT=$?
 if [[ $GIT_EXIT -ne 0 ]]; then
 	echo $GIT_ERROR_MESSAGE
 else
-	echo "Done."
+	echo -e "Done."
 fi
