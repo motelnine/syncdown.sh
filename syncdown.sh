@@ -4,6 +4,7 @@ RESET_COLOR='\033[0;0m'
 OK_COLOR='\033[0;32m'
 LINE_COLOR='\033[0;37m'
 ERROR_COLOR='\033[0;31m'
+BG_COLOR='\033[0;37m'
 
 # Shutdown command to be executed after sync
 SHUTDOWN_COMMAND='shutdown -h now'
@@ -22,13 +23,13 @@ GIT_ERROR_MESSAGE='A git error occured. Dropping back to console...'
 
 # Sync console container open
 opencontainer () {
-	echo -e "\n---------------------------------------"
+	echo -e "\n${LINE_COLOR}---------------------------------------${RESET_COLOR}"
 	echo -e "Syncing [${FOLDER_COLOR}${FOLDER}${RESET_COLOR}${RESET_COLOR}]..."
 }
 
 # Sync console container close
 closecontainer () {
-	echo -e "---------------------------------------\n"
+	echo -e "${LINE_COLOR}---------------------------------------${RESET_COLOR}\n"
 }
 
 # Read folders
@@ -38,11 +39,15 @@ cat $FOLDER_FILE | grep -vE '^[[:space:]]*$'\|'#' | while read line; do
 
 	opencontainer $FOLDER
 
+	echo -e -n $BG_COLOR
+
 	cd $FOLDER
 	git add .
 	git commit -m "$COMMIT_MESSAGE"
 	git push `echo $PUSH_COMMAND`
 	GIT_CODE=$?
+
+	echo -e -n $RESET_COLOR
 
 	if [[ $GIT_CODE -ne 0 ]]
 	then

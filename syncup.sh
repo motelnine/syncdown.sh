@@ -4,6 +4,7 @@ RESET_COLOR='\033[0;0m'
 OK_COLOR='\033[0;32m'
 LINE_COLOR='\033[0;37m'
 ERROR_COLOR='\033[0;31m'
+BG_COLOR='\033[0;37m'
 
 # Location of folders file (one folder per line)
 FOLDER_FILE="$HOME/.config/syncdown/folders.conf"
@@ -13,7 +14,7 @@ GIT_ERROR_MESSAGE='A git error occured. Dropping back to console...'
 
 # Sync console container open
 opencontainer () {
-	echo -e "\n---------------------------------------"
+	echo -e "\n${LINE_COLOR}---------------------------------------${RESET_COLOR}"
 	echo -e "Syncing [${FOLDER_COLOR}${FOLDER}${RESET_COLOR}${RESET_COLOR}]..."
 }
 
@@ -29,9 +30,13 @@ cat $FOLDER_FILE | grep -vE '^[[:space:]]*$'\|'#' | while read line; do
 
 	opencontainer $FOLDER
 
+	echo -e -n $BG_COLOR
+
 	cd $FOLDER
 	git pull `echo $PULL_COMMAND`
 	GIT_CODE=$?
+
+	echo -e -n $RESET_COLOR
 
 	if [[ $GIT_CODE -ne 0 ]]
 	then
